@@ -27,7 +27,7 @@ export default class King extends Piece {
             let row : number = currentSquare.row + direction.row;
             let col : number = currentSquare.col + direction.col;
             const square = Square.at(row, col);
-            moves.push(square);
+            if(square.row<=7 && square.row>=0 && square.col<=7 && square.col>=0) moves.push(square);
 
         }
 

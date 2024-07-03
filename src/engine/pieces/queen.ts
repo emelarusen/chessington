@@ -15,6 +15,9 @@ export default class Queen extends Piece {
         for(let col=0; col<8; col++){
             if(col!=currentSquare.col){
                 let square = Square.at(currentSquare.row, col);
+                if(board.getPiece(square)!=undefined) {
+                    break;
+                }
                 moves.push(square);
             }
         }
@@ -22,6 +25,9 @@ export default class Queen extends Piece {
         for(let row=0; row<8; row++){
             if(row!=currentSquare.row){
                 let square = Square.at(row, currentSquare.col);
+                if(board.getPiece(square)!=undefined) {
+                    break;
+                }
                 moves.push(square);
             }
         }
@@ -38,6 +44,9 @@ export default class Queen extends Piece {
             let col : number = currentSquare.col + direction.col;
             while (row >= 0 && row < 8 && col >= 0 && col < 8) {
                 const square = Square.at(row, col);
+                if(board.getPiece(square)!=undefined) {
+                    break;
+                }
                 moves.push(square);
                 row += direction.row;
                 col += direction.col;
