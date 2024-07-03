@@ -16,13 +16,18 @@ export default class Pawn extends Piece {
 
         let SquareAhead = Square.at(currentSquare.row + direction, currentSquare.col);
 
-        moves.push(SquareAhead);
-
-        if(board.findPiece(this).row <= 1 ||  board.findPiece(this).row >=6) {
-            let twoSquaresAhead = Square.at(SquareAhead.row + direction, SquareAhead.col);
-            moves.push(twoSquaresAhead);
+        if(board.getPiece(SquareAhead) === undefined){
+            moves.push(SquareAhead);
         }
 
+        if( (board.findPiece(this).row === 1 && this.player === Player.WHITE)
+            ||  (board.findPiece(this).row === 6 && this.player === Player.BLACK)) {
+            let twoSquaresAhead = Square.at(SquareAhead.row + direction, SquareAhead.col);
+            if(board.getPiece(twoSquaresAhead) === undefined && board.getPiece(SquareAhead) === undefined){
+                moves.push(twoSquaresAhead);
+            }
+        }
+        console.log(moves);
 
         return moves;
     }
