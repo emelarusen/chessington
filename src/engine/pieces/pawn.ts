@@ -18,6 +18,12 @@ export default class Pawn extends Piece {
 
         moves.push(SquareAhead);
 
+        if(board.findPiece(this).row <= 1 ||  board.findPiece(this).row >=6) {
+            let twoSquaresAhead = Square.at(SquareAhead.row + direction, SquareAhead.col);
+            moves.push(twoSquaresAhead);
+        }
+
+
         return moves;
     }
 }
