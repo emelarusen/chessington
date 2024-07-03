@@ -24,6 +24,7 @@ export default class Bishop extends Piece {
             let col : number = currentSquare.col + direction.col;
             while (row >= 0 && row < 8 && col >= 0 && col < 8) {
                 const square = Square.at(row, col);
+                if(board.getPiece(square)!=undefined) break;
                 moves.push(square);
                 row += direction.row;
                 col += direction.col;
