@@ -30,15 +30,15 @@ export default class Knight extends Piece {
             if (row >= 0 && row < 8 && col >= 0 && col < 8) {
                 const square = Square.at(row, col);
                 const blockingPiece = board.getPiece(square);
-                if (blockingPiece) {
-                    if (blockingPiece.player !== this.player && !(blockingPiece instanceof King)) {
+                if (!blockingPiece)
                         moves.push(square);
-                    }
-                    break;
-                }
-                moves.push(square);
+                if (blockingPiece && blockingPiece.player !== this.player && !(blockingPiece instanceof King))
+                        moves.push(square);
             }
+
         }
+
+
         return moves;
 
     }
