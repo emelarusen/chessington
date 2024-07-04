@@ -2,6 +2,7 @@ import Piece from './piece';
 import Player from '../player';
 import Board from '../board';
 import Square from "../square";
+import King from "./king";
 
 export default class Queen extends Piece {
     public constructor(player: Player) {
@@ -15,7 +16,11 @@ export default class Queen extends Piece {
         for(let col=0; col<8; col++){
             if(col!=currentSquare.col){
                 let square = Square.at(currentSquare.row, col);
-                if(board.getPiece(square)!=undefined) {
+                const blockingPiece = board.getPiece(square);
+                if (blockingPiece) {
+                    if (blockingPiece.player !== this.player && !(blockingPiece instanceof King)) {
+                        moves.push(square);
+                    }
                     break;
                 }
                 moves.push(square);
@@ -25,7 +30,11 @@ export default class Queen extends Piece {
         for(let row=0; row<8; row++){
             if(row!=currentSquare.row){
                 let square = Square.at(row, currentSquare.col);
-                if(board.getPiece(square)!=undefined) {
+                const blockingPiece = board.getPiece(square);
+                if (blockingPiece) {
+                    if (blockingPiece.player !== this.player && !(blockingPiece instanceof King)) {
+                        moves.push(square);
+                    }
                     break;
                 }
                 moves.push(square);
@@ -44,7 +53,11 @@ export default class Queen extends Piece {
             let col : number = currentSquare.col + direction.col;
             while (row >= 0 && row < 8 && col >= 0 && col < 8) {
                 const square = Square.at(row, col);
-                if(board.getPiece(square)!=undefined) {
+                const blockingPiece = board.getPiece(square);
+                if (blockingPiece) {
+                    if (blockingPiece.player !== this.player && !(blockingPiece instanceof King)) {
+                        moves.push(square);
+                    }
                     break;
                 }
                 moves.push(square);
