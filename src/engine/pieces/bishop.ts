@@ -10,8 +10,8 @@ export default class Bishop extends Piece {
     }
 
     public getAvailableMoves(board: Board) {
-        let moves: Square[] = [];
-        let currentSquare = board.findPiece(this);
+        const moves: Square[] = [];
+        const currentSquare = board.findPiece(this);
 
         const directions = [
             { row: 1, col: 1 },   // Top-right
