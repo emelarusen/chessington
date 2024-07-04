@@ -2,6 +2,7 @@ import Piece from './piece';
 import Player from '../player';
 import Board from '../board';
 import Square from "../square";
+import King from "./king";
 
 export default class Bishop extends Piece {
     public constructor(player: Player) {
@@ -24,7 +25,13 @@ export default class Bishop extends Piece {
             let col : number = currentSquare.col + direction.col;
             while (row >= 0 && row < 8 && col >= 0 && col < 8) {
                 const square = Square.at(row, col);
-                if(board.getPiece(square)!=undefined) break;
+                const blockingPiece = board.getPiece(square);
+                if (blockingPiece) {
+                    if (blockingPiece.player !== this.player && !(blockingPiece instanceof King)) {
+                        moves.push(square);
+                    }
+                    break;
+                }
                 moves.push(square);
                 row += direction.row;
                 col += direction.col;
